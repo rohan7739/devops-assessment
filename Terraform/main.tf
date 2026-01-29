@@ -1,7 +1,7 @@
 resource "aws_instance" "assignment_instance" {
   ami = "ami-019715e0d74f695be"
   instance_type = "t2.micro"
-  key_name = "nodeapp_mum-key"
+  key_name = "devops-assignment"
 
   vpc_security_group_ids = [
     aws_security_group.instance_sg.id
