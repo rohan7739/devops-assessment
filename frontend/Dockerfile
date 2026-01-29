@@ -1,4 +1,3 @@
-
 FROM node:20-alpine AS builder
 
 WORKDIR /app
@@ -14,7 +13,9 @@ RUN addgroup -S custgroup && adduser -S appuser -G custgroup
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-RUN chown -R appuser:custgroup /usr/share/nginx/html
+# ✅ Give permissions required by nginx
+RUN mkdir -p /var/cache/nginx /var/run /var/log/nginx \
+    && chown -R appuser:custgroup /usr/share/nginx/html /var/cache/nginx /var/run /var/log/nginx
 
 USER appuser
 
