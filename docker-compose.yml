@@ -12,6 +12,7 @@ services:
       - app-network
 
   frontend:
+    user: root
     build: ./frontend
     container_name: react-frontend
     ports:
